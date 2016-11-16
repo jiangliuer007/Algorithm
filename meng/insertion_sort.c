@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*
+ * version 0.0
 int insertion_sort(int *pArray, int num) {
     for (int i = 0 + 1; i < num; i++) { // igonore the first element.
         int itemp = pArray[i];
@@ -19,6 +21,24 @@ int insertion_sort(int *pArray, int num) {
             j--;
         }
 
+    }
+
+    return 0;
+}
+*/
+
+/*
+ * version 0.1
+ */
+int insertion_sort(int *pArray, int num) {
+    for (int i = 0 + 1; i < num; i++) { // igonore the first element.
+        int itemp = pArray[i];
+
+        int j = i - 1;
+        for (; pArray[j] > itemp; j--) {
+            pArray[j + 1] = pArray[j];
+        }
+        pArray[j + 1] = itemp;
     }
 
     return 0;
