@@ -35,7 +35,7 @@ int insertion_sort(int *pArray, int num) {
         int itemp = pArray[i];
 
         int j = i - 1;
-        for (; pArray[j] > itemp; j--) {
+        for (; (j >= 0) && (pArray[j] > itemp); j--) {
             pArray[j + 1] = pArray[j];
         }
         pArray[j + 1] = itemp;
