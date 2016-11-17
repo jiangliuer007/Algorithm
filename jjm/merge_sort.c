@@ -7,9 +7,6 @@ int merge_array(int *pArrayA, int numA, int *pArrayB, int numB, int *pOutput, in
 {
     assert(pArrayA && pArrayB && pOutput);
 
-    //printf("numA + numB = %d\n", numA + numB);
-    //int *ptemp = malloc(numA + numB);
-
     for (int ia = 0, ib =0, k = 0; (ia < numA) || (ib < numB);) {
         if (ia < numA) {
             if (ib < numB) {
@@ -34,8 +31,6 @@ int merge_array(int *pArrayA, int numA, int *pArrayB, int numB, int *pOutput, in
         }
     } 
 
-    //free(ptemp);
-
     return 0;
 }
 
@@ -46,9 +41,10 @@ int split_array(int *pInput, int numInput)
         split_array(pInput, imiddle);
         split_array(pInput + imiddle, numInput - imiddle);
 
-        int *ptemp = malloc(numInput);
+        int *ptemp = malloc(numInput * sizeof(int));
         merge_array(pInput, imiddle, pInput + imiddle, numInput - imiddle, ptemp, numInput);
         memcpy(pInput, ptemp, (sizeof(int) * numInput));
+        free(ptemp);
     } 
 }
 
