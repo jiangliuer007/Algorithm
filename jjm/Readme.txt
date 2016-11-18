@@ -6,3 +6,9 @@ merge_sort.c
 
 heap_sort.c
     page 154         --算法导论（第三版）
+
+
+quick_sort.c
+        counting_sort
+                radix_sort
+                        bucket_sort
