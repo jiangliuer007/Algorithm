@@ -12,3 +12,4 @@ quick_sort.c
         counting_sort
                 radix_sort
                         bucket_sort
+test on linux
