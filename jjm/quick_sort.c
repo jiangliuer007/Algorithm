@@ -20,7 +20,7 @@ int swap(int *pa, int *pb) {
 int fun(int *parray, int istart, int iend) {
     //assert(parray && presult);
     assert(parray);
-    
+
     int k = istart;
     if (iend - istart >= 1) {
         for (int i = istart; i < iend; i++) {
@@ -29,11 +29,11 @@ int fun(int *parray, int istart, int iend) {
                 k++;
             }
         }
-        
+
         swap(&(parray[k]), &(parray[iend]));
 
-//        *presult = k;
-        
+        //        *presult = k;
+
         fun(parray, istart, k - 1);
         fun(parray, k + 1, iend);
     }
@@ -58,7 +58,7 @@ int quick_sort(int *parray, int istart, int iend) {
  */
 int partition(int *parray, int istart, int iend, int *presult) {
     assert(parray && presult);
-    
+
     int k = istart;
     for (int i = istart; i < iend; i++) {
         if (parray[i] < parray[iend]) {
@@ -66,7 +66,9 @@ int partition(int *parray, int istart, int iend, int *presult) {
             k++;
         }
     }
-    swap(&(parray[k]), &(parray[iend]));
+    if (parray[k] != parray[iend]) {
+        swap(&(parray[k]), &(parray[iend]));
+    }
 
     *presult = k;
 
@@ -79,7 +81,7 @@ int partition(int *parray, int istart, int iend, int *presult) {
 int quick_sort(int *parray, int istart, int iend) {
     //printf("quick_sort() version 0.1 is called ^_^\n");
     assert(parray);  
-    
+
     if (istart < iend) {
         int ik = 0;
         partition(parray, istart, iend, &ik);
@@ -102,6 +104,6 @@ int main(int argc, char *argv[]) {
         printf("%d\t", iarray[i]);
     }
     printf("\n");
-    
+
     exit(0);
 }

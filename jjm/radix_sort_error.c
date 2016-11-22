@@ -24,8 +24,11 @@ int partition_ex(int *parray, int istart, int iend, int *presult, int *ptarget) 
             k++;
         }
     }
-    swap(&(parray[k]), &(parray[iend]));
-    swap(&(ptarget[k]), &(ptarget[iend]));
+
+    if (parray[k] != parray[iend]) {
+        swap(&(parray[k]), &(parray[iend]));
+        swap(&(ptarget[k]), &(ptarget[iend]));
+    }
 
     *presult = k;
 
