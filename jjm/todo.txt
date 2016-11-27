@@ -1,0 +1,2 @@
+question??
+    after delete the head, why the output is 0, 4, 16, 9, 25???
