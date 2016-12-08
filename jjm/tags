@@ -1,0 +1,94 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+MAX_LEN	queue.c	7;"	d	file:
+Node	bucket_sort.c	/^typedef struct Node {$/;"	s	file:
+PNode	bucket_sort.c	/^} lNode, *PNode;$/;"	t	typeref:struct:Node	file:
+STACK_SIZE	stack.c	6;"	d	file:
+a	del.cpp	/^int a[]={1,255,8,6,25,47,14,35,58,75,96,158,657};$/;"	v
+add_and_resort_list	bucket_sort.c	/^int add_and_resort_list(lNode **pphead, lNode *pNewNode) {$/;"	f
+add_to_list	bucket_sort.c	/^int add_to_list(lNode **pphead, float fval) {$/;"	f
+b	del.cpp	/^int b[10][len+1]={0};\/\/将b全部置0$/;"	v
+bucketSort	del.cpp	/^void bucketSort(int a[])$/;"	f
+bucket_sort	bucket_sort.c	/^int bucket_sort(float *parray, int num_elements) {$/;"	f
+build_max_heap	heap_sort.c	/^int build_max_heap(int *p_heap, int len_heap) {$/;"	f
+collectElments	del.cpp	/^void collectElments(int a[],int b[10][len+1])$/;"	f
+copy_value	bucket_sort.c	/^int copy_value(PNode *parray, int num_array, float *ptarget) {$/;"	f
+counting_sort	counting_sort.c	/^int counting_sort(int *parray, int len_array, int imax, int *presult) {$/;"	f
+create	geek_program/third.c	/^char* create(char B[], int lengthB, int n) {$/;"	f
+dequeue	queue.c	/^int dequeue(qi *pqueue, int *pival) {$/;"	f
+distributeElments	del.cpp	/^void distributeElments(int a[],int b[10][len+1],int digits)$/;"	f
+enqueue	queue.c	/^int enqueue(qi *pqueue, int ival) {$/;"	f
+false	geek_program/third.c	6;"	d	file:
+fun	quick_sort.c	/^int fun(int *parray, int istart, int iend) {$/;"	f
+fval	bucket_sort.c	/^    float fval;$/;"	m	struct:Node	file:
+getNumber	geek_program/first.c	/^int getNumber(int A[], int lengthA){$/;"	f
+getNumber	geek_program/third.c	/^int getNumber(char A[], int lengthA, char B[], int lengthB){$/;"	f
+heap_sort	heap_sort.c	/^int heap_sort(int *p_heap, int len_heap) {$/;"	f
+iarray	queue.c	/^    int iarray[MAX_LEN];$/;"	m	struct:queue_info	file:
+iarray	stack.c	/^    int iarray[STACK_SIZE];$/;"	m	struct:info_stack	file:
+iend	queue.c	/^    int iend;$/;"	m	struct:queue_info	file:
+info_stack	stack.c	/^typedef struct info_stack {$/;"	s	file:
+insertion_sort	insertion_sort.c	/^int insertion_sort(int *pArray, int num) {$/;"	f
+inum_items	queue.c	/^    int inum_items;$/;"	m	struct:queue_info	file:
+isTrue	geek_program/third.c	/^int isTrue(char A[], int lengthA, char B[], int lengthB) {$/;"	f
+istack	stack.c	/^}istack;$/;"	t	typeref:struct:info_stack	file:
+istart	queue.c	/^    int istart;$/;"	m	struct:queue_info	file:
+itop	stack.c	/^    int itop;$/;"	m	struct:info_stack	file:
+ival	list_10.2.c	/^    int ival;$/;"	m	struct:list_node	file:
+lNode	bucket_sort.c	/^} lNode, *PNode;$/;"	t	typeref:struct:Node	file:
+len	del.cpp	/^const int len=sizeof(a)\/sizeof(int);$/;"	v
+list_delete	list_10.2.c	/^int list_delete(lnode **ppl, int k) {$/;"	f
+list_insert	list_10.2.c	/^int list_insert(lnode **ppl, int k) {$/;"	f
+list_node	list_10.2.c	/^typedef struct list_node {$/;"	s	file:
+list_print_values	bucket_sort.c	/^int list_print_values(PNode *parray, int num_array) {$/;"	f
+list_print_values	list_10.2.c	/^int list_print_values(lnode *pl) {$/;"	f
+list_search	list_10.2.c	/^int list_search(lnode *pl, int k, lnode **ppk) {$/;"	f
+lnode	list_10.2.c	/^} lnode, *plnode;$/;"	t	typeref:struct:list_node	file:
+main	bucket_sort.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	calloc_free_test.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	counting_sort.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	del.cpp	/^int main()$/;"	f
+main	geek_program/first.c	/^int main(){$/;"	f
+main	geek_program/third.c	/^int main(){$/;"	f
+main	heap_sort.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	insertion_sort.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	list_10.2.c	/^int main(int argc, char *argv[]) { $/;"	f
+main	merge_sort.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	pointer_test.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	queue.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	quick_sort.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	radix_sort_error.c	/^int main(int argc, char *argv[]) {$/;"	f
+main	stack.c	/^int main (int argc, char *argv[]) {$/;"	f
+max_heapify	heap_sort.c	/^int max_heapify(int len_heap, int *p_heap, int i) {$/;"	f
+merge_array	merge_sort.c	/^int merge_array(int *pArrayA, int numA, int *pArrayB, int numB, int *pOutput, int numOutput)$/;"	f
+merge_sort	merge_sort.c	/^int merge_sort(int *pInput, int numInput, int *pOutput, int nOutput)$/;"	f
+numOfDigits	del.cpp	/^int numOfDigits(int a[])$/;"	f
+partition	quick_sort.c	/^int partition(int *parray, int istart, int iend, int *presult) {$/;"	f
+partition_ex	radix_sort_error.c	/^int partition_ex(int *parray, int istart, int iend, int *presult, int *ptarget) {$/;"	f
+plnode	list_10.2.c	/^} lnode, *plnode;$/;"	t	typeref:struct:list_node	file:
+pnext	bucket_sort.c	/^    struct Node *pnext;$/;"	m	struct:Node	typeref:struct:Node::Node	file:
+pnext	list_10.2.c	/^    struct list_node *pnext;$/;"	m	struct:list_node	typeref:struct:list_node::list_node	file:
+pop	stack.c	/^int pop(istack *pstack, int *pival) {$/;"	f
+pprevious	list_10.2.c	/^    struct list_node *pprevious;$/;"	m	struct:list_node	typeref:struct:list_node::list_node	file:
+push	stack.c	/^int push(istack *pstack, int ival) {$/;"	f
+qi	queue.c	/^}qi;$/;"	t	typeref:struct:queue_info	file:
+queue_info	queue.c	/^typedef struct queue_info {$/;"	s	file:
+queue_is_empty	queue.c	/^int queue_is_empty(qi *pqueue) {$/;"	f
+queue_is_full	queue.c	/^int queue_is_full(qi *pqueue) {$/;"	f
+quick_sort	quick_sort.c	/^int quick_sort(int *parray, int istart, int iend) {$/;"	f
+quick_sort_ex	radix_sort_error.c	/^int quick_sort_ex(int *parray, int istart, int iend, int *ptarget) {$/;"	f
+radix_sort	radix_sort_error.c	/^int radix_sort(int *parray, int num_array, int num_digit) {$/;"	f
+sort_list	bucket_sort.c	/^int sort_list(lNode **pphead) {$/;"	f
+split_array	merge_sort.c	/^int split_array(int *pInput, int numInput)$/;"	f
+stack_empty	stack.c	/^int stack_empty(istack *pstack) {$/;"	f
+stack_full	stack.c	/^int stack_full(istack *pstack) {$/;"	f
+std	del.cpp	/^usingnamespace std;$/;"	v
+swap	heap_sort.c	/^int swap(int *pa, int *pb) {$/;"	f
+swap	quick_sort.c	/^int swap(int *pa, int *pb) {$/;"	f
+swap	radix_sort_error.c	/^int swap(int *pa, int *pb) {$/;"	f
+true	geek_program/third.c	5;"	d	file:
+zeroBucket	del.cpp	/^void zeroBucket(int b[][len+1])$/;"	f
