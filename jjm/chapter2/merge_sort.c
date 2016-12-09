@@ -3,6 +3,10 @@
 #include <string.h>
 #include <stdio.h>
 
+/*
+ * please refer to the pseudocode in page 34.
+ */
+
 int merge_array(int *pArrayA, int numA, int *pArrayB, int numB, int *pOutput, int numOutput)
 {
     assert(pArrayA && pArrayB && pOutput);

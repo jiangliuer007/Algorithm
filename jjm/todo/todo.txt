@@ -7,3 +7,11 @@ list_10.2-8.c
 
 
 12.1-3.c    
+
+version on iteration.
+    inorder_tree_walk() 
+    tree_search
+    tree_minimum
+    tree_maximum
+
+
