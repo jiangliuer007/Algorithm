@@ -70,5 +70,22 @@ int main(int argc, char *argv[]) {
         printf("the successor of %d could not be found.\n", ival);
     }
 
+    //ival = 2;
+    //ival = 4;
+    //ival = 9;
+    //ival = 17;
+    //ival = 20;
+
+
+    //ival = 13;
+
+    //ival = 7;
+
+    ival = 3;
+    //ival = 15;
+    tree_delete(&phead, ival);
+    inorder_tree_walk(phead);
+    printf("\n");
+
     exit(0);
 }

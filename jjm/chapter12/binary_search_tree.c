@@ -81,6 +81,7 @@ int tree_maximum(bstnode *phead, bstnode **ppmaximum) {
  * */
 int tree_successor(bstnode *pnode, bstnode **ppsuccessor_on_pnode) {
     assert(pnode && ppsuccessor_on_pnode);
+    *ppsuccessor_on_pnode = NULL;
 
     if (pnode->pright) {
         tree_minimum(pnode->pright, ppsuccessor_on_pnode);
@@ -148,5 +149,71 @@ int tree_insert(bstnode **pphead, int ival) {
  * note: refer to the pseudocode in page 298.
  * */
 int tree_delete(bstnode **pphead, int ival) {
+    assert(pphead);
+
+    bstnode *pdel = NULL;
+    tree_search(*pphead, ival, &pdel);
+    if (!pdel) {
+        return 0;
+    }
+
+    if ((NULL == pdel->pleft) && (NULL == pdel->pright)) {      /* the node to be deleted has no children. */
+        if (NULL == pdel->pparent) {
+            *pphead = NULL;
+        } else if (pdel->pparent->pleft == pdel) {
+            pdel->pparent->pleft = NULL;
+        } else {
+            pdel->pparent->pright = NULL;
+        }
+    } 
+
+    if ((NULL ==pdel->pleft) && (pdel->pright)) {               /* the node to be deleted only has right child. */
+        if (NULL == pdel->pparent) {
+            *pphead = pdel->pright;
+        } else if (pdel->pparent->pleft == pdel) {
+            pdel->pparent->pleft = pdel->pright;
+            pdel->pright->pparent = pdel->pparent;
+        } else {
+            pdel->pparent->pright = pdel->pright;
+            pdel->pright->pparent = pdel->pparent;
+        }
+    }
+
+    if ((pdel->pleft) && (NULL == pdel->pright)) {              /* the node to be deleted only has left child. */
+        if (NULL == pdel->pparent) {
+            *pphead = pdel->pleft;
+        } else if (pdel->pparent->pleft == pdel) {
+            pdel->pparent->pleft = pdel->pleft;
+            pdel->pleft->pparent = pdel->pparent;
+        } else {
+            pdel->pparent->pright = pdel->pleft;
+            pdel->pleft->pparent = pdel->pparent;
+        }
+    }
+
+    if ((pdel->pleft) && (pdel->pright)) {                      /* the node to be deleted has left child and right child. */
+        bstnode *psuccessor_on_pdel;
+        tree_successor(pdel, &psuccessor_on_pdel);
+        if (psuccessor_on_pdel->pparent->pright == psuccessor_on_pdel) {
+            psuccessor_on_pdel->pparent->pright = psuccessor_on_pdel->pright;
+            if (psuccessor_on_pdel->pright) {
+                psuccessor_on_pdel->pright->pparent = psuccessor_on_pdel->pparent;
+            }
+        } else {
+            psuccessor_on_pdel->pparent->pleft = psuccessor_on_pdel->pright;
+            if (psuccessor_on_pdel->pright) {
+                psuccessor_on_pdel->pright->pparent = psuccessor_on_pdel->pparent;
+            }
+        }
+        psuccessor_on_pdel->pleft = pdel->pleft;
+        psuccessor_on_pdel->pright = pdel->pright;
+        psuccessor_on_pdel->pparent = pdel->pparent;
+
+        if (pdel == *pphead) {
+            *pphead = psuccessor_on_pdel;
+        }
+    }
+    free(pdel);
+
     return 0;
 }
