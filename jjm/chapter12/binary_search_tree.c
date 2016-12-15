@@ -169,6 +169,7 @@ int tree_delete(bstnode **pphead, int ival) {
 
     if ((NULL ==pdel->pleft) && (pdel->pright)) {               /* the node to be deleted only has right child. */
         if (NULL == pdel->pparent) {
+            pdel->pright->pparent = NULL;
             *pphead = pdel->pright;
         } else if (pdel->pparent->pleft == pdel) {
             pdel->pparent->pleft = pdel->pright;
@@ -181,6 +182,7 @@ int tree_delete(bstnode **pphead, int ival) {
 
     if ((pdel->pleft) && (NULL == pdel->pright)) {              /* the node to be deleted only has left child. */
         if (NULL == pdel->pparent) {
+            pdel->pleft->pparent = NULL;
             *pphead = pdel->pleft;
         } else if (pdel->pparent->pleft == pdel) {
             pdel->pparent->pleft = pdel->pleft;
@@ -206,11 +208,23 @@ int tree_delete(bstnode **pphead, int ival) {
             }
         }
         psuccessor_on_pdel->pleft = pdel->pleft;
-        psuccessor_on_pdel->pright = pdel->pright;
-        psuccessor_on_pdel->pparent = pdel->pparent;
+        if (pdel->pleft) {
+            pdel->pleft->pparent = psuccessor_on_pdel;
+        }
 
-        if (pdel == *pphead) {
+        psuccessor_on_pdel->pright = pdel->pright;
+        if (pdel->pright) {
+            pdel->pright->pparent = psuccessor_on_pdel;
+        }
+
+        psuccessor_on_pdel->pparent = pdel->pparent;
+        if (NULL == pdel->pparent) {
+            psuccessor_on_pdel->pparent = NULL;
             *pphead = psuccessor_on_pdel;
+        } else if (pdel->pparent->pleft == pdel) {
+            pdel->pparent->pleft = psuccessor_on_pdel;
+        } else {
+            pdel->pparent->pright = psuccessor_on_pdel;
         }
     }
     free(pdel);
