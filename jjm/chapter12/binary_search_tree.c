@@ -148,6 +148,49 @@ int tree_insert(bstnode **pphead, int ival) {
  *
  * note: refer to the pseudocode in page 298.
  * */
+int transplant(bstnode **pphead, bstnode *pu, bstnode *pv) {
+    assert(pphead && pu);
+
+    if (NULL == pu->pparent) {
+        *pphead = pv;
+    } else if (pu == pu->pparent->pleft) {
+        pu->pparent->pleft = pv;
+    } else {
+        pu->pparent->pright = pv;
+    }
+
+    if (pv) {
+        pv->pparent = pu->pparent;
+    }
+
+    return 0;
+}
+int tree_delete(bstnode **pphead, bstnode *pdel) {
+    assert(pphead && pdel);
+
+    if (NULL == pdel->pleft) {
+        transplant(pphead, pdel, pdel->pright);
+    } else if (NULL == pdel->pright) {
+        transplant(pphead, pdel, pdel->pleft);
+    } else {
+        bstnode *py = NULL;             // py is the successor of pdel.
+        tree_minimum(pdel->pright, &py);
+        if (py != pdel->pright) {
+            transplant(pphead, py, py->pright);
+
+            py->pright = pdel->pright;
+            pdel->pright->pparent = py;
+        }
+        transplant(pphead, pdel, py);
+        py->pleft = pdel->pleft;
+        pdel->pleft->pparent = py;
+    }
+    free(pdel);
+
+    return 0;
+}
+
+#if 0
 int tree_delete(bstnode **pphead, int ival) {
     assert(pphead);
 
@@ -231,3 +274,4 @@ int tree_delete(bstnode **pphead, int ival) {
 
     return 0;
 }
+#endif

@@ -19,4 +19,5 @@ int tree_minimum(bstnode *phead, bstnode **ppminimum);
 int tree_maximum(bstnode *phead, bstnode **ppmaximum);
 int tree_successor(bstnode *pnode, bstnode **ppsuccessor_on_pnode);
 int tree_insert(bstnode **pphead, int ival);
-int tree_delete(bstnode **pphead, int ival);
+//int tree_delete(bstnode **pphead, int ival);
+int tree_delete(bstnode **pphead, bstnode *pdel);

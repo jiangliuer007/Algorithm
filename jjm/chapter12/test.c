@@ -70,22 +70,30 @@ int main(int argc, char *argv[]) {
         printf("the successor of %d could not be found.\n", ival);
     }
 
-    ival = 2;
+    bstnode *pdel = NULL;
+
+    // the node with no children.
+    //ival = 2;
     //ival = 4;
     //ival = 9;
     //ival = 17;
     //ival = 20;
 
-
+    // the node with only one child.
     //ival = 13;
-
     //ival = 7;
-
+    
+    // the node with both children.
     //ival = 3;
+    //ival = 6;
     //ival = 15;
-    tree_delete(&phead, ival);
-    inorder_tree_walk(phead);
-    printf("\n");
+    ival = 18;
+    tree_search(phead, ival, &pdel);
+    if (pdel) {
+        tree_delete(&phead, pdel);
+        inorder_tree_walk(phead);
+        printf("\n");
+    }
 
     exit(0);
 }
