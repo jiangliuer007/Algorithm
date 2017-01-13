@@ -60,8 +60,18 @@ int right_rotate(rbt_node **pproot, rbt_node *px) {
 /*
  * please refer to the pseudocode in page 316.
  */
-int rb_insert_fixup() {
+int rb_insert_fixup(rbt_node **pproot, rbt_node *pz) {
+    assert(pproot && pz);
+
+    while (__red == z->pparent->color) {
+        if (z->pparent->pparent->pleft == z->pparent) {
+            rbt_node *py = z->pparent->pparent->pright;
+            if (py->color == __red) {
+                
+            }
+        }
     
+    }
 
 
     return 0;
