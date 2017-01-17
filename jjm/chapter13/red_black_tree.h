@@ -16,6 +16,12 @@ typedef struct red_black_tree_node {
     struct red_black_tree_node *pright;
 } rbt_node, *prbt_node;
 
+typedef struct red_black_tree_head_info {
+    struct rbt_node *proot;
+    struct red_black_tree_node *pnil;
+} rbt_info, *prbt_info;
 
-int rb_insert(rbt_node **pproot, int ival);
-int rb_inorder_tree_walk(rbt_node *proot);
+int rb_init(rbt_info *prbt_info);
+int rb_insert(rbt_info *prbt_info, int ival);
+int rb_inorder_tree_walk(rbt_info *prbt_info);
+
