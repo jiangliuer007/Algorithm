@@ -1,3 +1,7 @@
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 typedef enum red_black_tree_color {
     __black,
@@ -13,4 +17,5 @@ typedef struct red_black_tree_node {
 } rbt_node, *prbt_node;
 
 
-int left_rotate(rbt_node *proot, rbt_node *pnode);
+int rb_insert(rbt_node **pproot, int ival);
+int rb_inorder_tree_walk(rbt_node *proot);
