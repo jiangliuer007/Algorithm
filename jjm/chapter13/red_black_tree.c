@@ -132,7 +132,7 @@ int rb_insert_fixup(rbt_node **pproot, rbt_node *pz, rbt_node *pnil) {
  * please refer to the pseudocode in page 315.
  */
 int rb_insert(rbt_info *prbt_info, int ival) {
-    assert(prbt_info && pnil);
+    assert(prbt_info);
     rbt_node **pproot = &(prbt_info->proot);
     rbt_node *pnil = prbt_info->pnil;
 
@@ -184,9 +184,9 @@ int rb_inorder_tree_walk_proc(rbt_node *proot, rbt_node *pnil) {
         return 1;
     }
 
-    rb_inorder_tree_walk(proot->pleft, pnil);
+    rb_inorder_tree_walk_proc(proot->pleft, pnil);
     printf("%d\t", proot->ival);
-    rb_inorder_tree_walk(proot->pright, pnil);
+    rb_inorder_tree_walk_proc(proot->pright, pnil);
 
 
     return 0;

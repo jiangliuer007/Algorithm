@@ -17,7 +17,7 @@ typedef struct red_black_tree_node {
 } rbt_node, *prbt_node;
 
 typedef struct red_black_tree_head_info {
-    struct rbt_node *proot;
+    struct red_black_tree_node *proot;
     struct red_black_tree_node *pnil;
 } rbt_info, *prbt_info;
 
