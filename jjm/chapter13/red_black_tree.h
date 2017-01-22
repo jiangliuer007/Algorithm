@@ -23,5 +23,8 @@ typedef struct red_black_tree_head_info {
 
 int rb_init(rbt_info *prbt_info);
 int rb_insert(rbt_info *prbt_info, int ival);
+int rb_delete(rbt_info *prbt_info, rbt_node *pz);
+int rb_search(rbt_info *prbt_info, int ival, rbt_node **pptarget);
+
 int rb_inorder_tree_walk(rbt_info *prbt_info);
 

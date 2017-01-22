@@ -185,7 +185,7 @@ int rb_inorder_tree_walk_proc(rbt_node *proot, rbt_node *pnil) {
     }
 
     rb_inorder_tree_walk_proc(proot->pleft, pnil);
-    printf("%d\t", proot->ival);
+    printf("%d [color = %d]\t", proot->ival, proot->color);
     rb_inorder_tree_walk_proc(proot->pright, pnil);
 
 
@@ -195,6 +195,176 @@ int rb_inorder_tree_walk(rbt_info *prbt_info) {
     assert(prbt_info);
     
     rb_inorder_tree_walk_proc(prbt_info->proot, prbt_info->pnil);
+
+    return 0;
+}
+
+/*
+ * please refer to the pseudocode in page 323.
+ */
+int rb_transplant(rbt_info *prbt_info, rbt_node *pu, rbt_node *pv) {
+    assert(prbt_info && pu && pv);
+    
+    if (pu->pparent == prbt_info->pnil) {
+        prbt_info->proot = pv;
+    } else if (pu->pparent->pleft == pu) {
+        pu->pparent->pleft = pv;
+    } else {
+        pu->pparent->pright = pv;
+    }
+
+    pv->pparent = pu->pparent;
+
+    return 0;
+}
+
+/*
+ *  please refer to the pseudocode in page 326.
+ */
+int rb_delete_fixup(rbt_info *prbt_info, rbt_node *px) {
+    assert(prbt_info && px);
+    
+    while ((px != prbt_info->proot) && px->color == __black) {
+        if (px == px->pparent->pleft) {
+            rbt_node *pw = px->pparent->pright;
+            if (pw->color == __red) {
+                pw->color = __black;
+                px->pparent->color = __red;
+                left_rotate(&(prbt_info->proot), px->pparent, prbt_info->pnil);
+                pw = px->pparent->pright;
+            }
+
+            if ((pw->pleft->color == __black) && (pw->pright->color == __black)) {
+                pw->color = __red;
+                px = px->pparent;
+            } else {
+                if (pw->pright->color == __black) {
+                    pw->pleft->color = __black;
+                    pw->color = __red;
+                    right_rotate(&(prbt_info->proot), pw, prbt_info->pnil);
+                    pw = px->pparent->pright;
+                }
+
+                pw->color = px->pparent->color;
+                px->pparent->color = __black;
+                pw->pright->color = __black;
+                left_rotate(&(prbt_info->proot), px->pparent, prbt_info->pnil);
+                px = prbt_info->proot;
+            }
+        } else {
+            rbt_node *pw = px->pparent->pleft;
+            if (pw->color == __red) {
+                pw->color = __black;
+                px->pparent->color = __red;
+                right_rotate(&(prbt_info->proot), px->pparent, prbt_info->pnil);
+                pw = px->pparent->pleft;
+            }
+
+            if ((pw->pleft->color == __black) && (pw->pright->color == __black)) {
+                pw->color = __red;
+                px = px->pparent;
+            } else {
+                if (pw->pright->color == __red) {
+                    pw->pright->color = __black;
+                    pw->color = __red;
+                    left_rotate(&(prbt_info->proot), pw, prbt_info->pnil);
+                    pw = px->pparent->pleft;
+                }
+                
+                pw->color = px->pparent->color;
+                px->pparent->color = __black;
+                pw->pleft->color = __black;
+                right_rotate(&(prbt_info->proot), px->pparent, prbt_info->pnil);
+                px = prbt_info->proot;
+            }
+
+        }
+    }
+
+    px->color = __black;
+
+    return 0;
+}
+/*
+ * please refer to the pseudocode in page 324.
+ */
+
+int rb_minimum(rbt_node *px, rbt_node *pnil, rbt_node **pptarget) {
+    assert(px && pnil && pptarget);
+
+    while (px->pleft != pnil) {
+        px = px->pleft;
+    }
+    *pptarget = px;
+
+    return 0;
+}
+
+int rb_delete(rbt_info *prbt_info, rbt_node *pz) {
+    assert(prbt_info && prbt_info->pnil && pz);
+    
+    rbt_node *proot = prbt_info->proot;
+    rbt_node *pnil  = prbt_info->pnil;
+
+    rbt_node *py = pz;
+    rbt_color y_original_color = py->color;
+    rbt_node *px = NULL;
+    if (pz->pleft == pnil) {
+        px = pz->pright;
+        rb_transplant(prbt_info, pz, pz->pright);
+    } else if (pz->pright == pnil) {
+        px = pz->pleft;
+        rb_transplant(prbt_info, pz, pz->pleft);
+    } else {
+        rb_minimum(pz->pright, pnil, &py);
+        y_original_color = py->color;
+
+        px = py->pright;
+        if (py->pparent == pz) {
+            px->pparent = py;
+        } else {
+            rb_transplant(prbt_info, py, py->pright);
+            py->pright          = pz->pright;
+            py->pright->pparent = py;
+        }
+
+        rb_transplant(prbt_info, pz, py);
+        py->pleft = pz->pleft;
+        py->pleft->pparent = py;
+        py->color = pz->color;
+    }
+    
+    if (y_original_color = __black) {
+        rb_delete_fixup(prbt_info, px);
+    }
+    
+    return 0;
+}
+
+
+/*
+ * please refer to the pseudocode in page 290.
+ */
+int rb_search_proc(rbt_node *proot, rbt_node *pnil, int ival, rbt_node **pptarget) {
+    assert(proot && pnil && pptarget);
+    if (pnil == proot) {        /* the node is a leaf. */
+        return 1;
+    }
+
+    if (proot->ival == ival) {
+        *pptarget = proot;
+    } else if (proot->ival < ival) {
+        rb_search_proc(proot->pright, pnil, ival, pptarget);
+    } else {
+        rb_search_proc(proot->pleft, pnil, ival, pptarget);
+    }
+
+    return 0;
+}
+int rb_search(rbt_info *prbt_info, int ival, rbt_node **pptarget) {
+    assert(prbt_info && pptarget);
+    
+    rb_search_proc(prbt_info->proot, prbt_info->pnil, ival, pptarget);
 
     return 0;
 }
