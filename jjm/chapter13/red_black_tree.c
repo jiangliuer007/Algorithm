@@ -183,9 +183,11 @@ int rb_inorder_tree_walk_proc(rbt_node *proot, rbt_node *pnil) {
     if (pnil == proot) {
         return 1;
     }
+    
+    char *_color[] = {"black", "red"};
 
     rb_inorder_tree_walk_proc(proot->pleft, pnil);
-    printf("%d [color = %d]\t", proot->ival, proot->color);
+    printf("[%d %s]\t", proot->ival, _color[proot->color]);
     rb_inorder_tree_walk_proc(proot->pright, pnil);
 
 
@@ -334,7 +336,7 @@ int rb_delete(rbt_info *prbt_info, rbt_node *pz) {
         py->color = pz->color;
     }
     
-    if (y_original_color = __black) {
+    if (y_original_color == __black) {
         rb_delete_fixup(prbt_info, px);
     }
     
